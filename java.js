@@ -60,4 +60,50 @@ function adjustBackgroundHeight() {
 adjustBackgroundHeight();
 window.addEventListener('resize', adjustBackgroundHeight);
 
+
+
+const form = document.getElementById('contact-form');
+const successMessage = document.getElementById('success-message');
+
+
+const phoneNumber = '5531997711339'; 
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault(); 
+   
+    const name = form.querySelector('input[name="name"]').value;
+    const email = form.querySelector('input[name="email"]').value;
+    const subject = form.querySelector('input[name="subject"]').value;
+    const message = form.querySelector('textarea[name="message"]').value;
+
+    
+    const whatsappMessage = 
+        `[Mensagem do Portfólio]\n\n` +
+        `Nome: ${name}\n` +
+        `Email: ${email}\n` +
+        `Assunto: ${subject}\n\n` +
+        `Mensagem:\n${message}`;
+
+    
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+    
+    window.open(whatsappUrl, '_blank');
+
+  
+    successMessage.style.display = 'block';
+
+  
+    setTimeout(() => {
+        form.reset();
+    }, 1000);
+
+    
+    setTimeout(() => {
+        successMessage.style.display = 'none';
+    }, 5000);
+});
+
+
 generateDots();
