@@ -20,6 +20,7 @@
 }
 
 body {
+    overflow-x: hidden;
     background-color: var(--background-light);  
 }
 
@@ -807,4 +808,5 @@ body.dark-mode .dot {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
